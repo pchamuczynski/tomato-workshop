@@ -53,10 +53,8 @@ def test_select_product(page, data):
 
         # Wait for the status element to contain the expected value
         status_element = page.locator("#status")
-        page.wait_for_timeout(500)  # Small delay to ensure the value is updated
         status_value = status_element.input_value()
         response = page.locator("#response")
-        page.wait_for_timeout(500)
         response_value = response.input_value()
 
         if 'status' in data:
@@ -67,12 +65,6 @@ def test_select_product(page, data):
                 print(f"✅: {data}\nStatus: {status_value}, Response: {response_value}")
         else:
             print(f"✅: {data}\nStatus: {status_value}, Response: {response_value}")
-        
-        # sleep for 2 seconds to observe the selection
-        # page.wait_for_timeout(2000)
-
-        # Close the browser
-        # browser.close()
 
 def main():
     with sync_playwright() as p:
