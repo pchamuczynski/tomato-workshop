@@ -1,4 +1,5 @@
 
+pip install pipenv
 pipenv install
 pipenv run playwright install
 pipenv run playwright install-deps
