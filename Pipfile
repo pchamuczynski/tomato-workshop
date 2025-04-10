@@ -1,0 +1,9 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+testomaton = {version = ">=0.3.0", markers = "python_version >= '3.8'"}
+playwright = {version = ">=1.0.0", markers = "python_version >= '3.8'"}
+pytest = "*"

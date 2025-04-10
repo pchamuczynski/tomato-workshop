@@ -1,0 +1,78 @@
+functions:
+  - function: Default
+    parameters:
+      - parameter: product
+        choices:
+          - choice: hoodie
+      - parameter: color
+        choices:
+          - choice: white
+          - choice: black
+          - choice: red
+          - choice: green
+          - choice: blue
+      - parameter: size
+        choices:
+          - choice: XS
+          - choice: S
+          - choice: M
+          - choice: L
+          - choice: XL
+      - parameter: quantity
+        choices:
+          - choice: "1"
+          - choice: "10"
+      - parameter: country
+        choices:
+          - choice: Norway
+          - choice: Poland
+          - choice: other
+          - choice: Benelux
+            choices:
+              - choice: Belgium
+              - choice: Netherlands
+              - choice: Luxembourg
+      - parameter: name
+        choices:
+          - choice: John Lennon
+          - choice: Paul McCartney
+      - parameter: address
+        choices:
+          - choice: Grota Roweckiego 19
+          - choice: Brugatta 17
+          - choice: Wall Streat
+      - parameter: phone
+        choices:
+          - choice: Poland
+            value: "+48332332444"
+          - choice: Norway
+            value: "+4712345644"
+      - parameter: email
+        choices:
+          - choice: michael.scott@dunder-mifflin.com
+          - choice: dumbo@the.circus
+      - parameter: payment
+        choices:
+          - choice: VISA
+          - choice: MASTERCARD
+          - choice: bank transfer
+          - choice: cash on delivery
+      - parameter: delivery
+        choices:
+          - choice: standard
+          - choice: express
+          - choice: PostNL
+      - output parameter: status
+        default value: Request accepted
+    logic:
+      - constraint: hoodie colors
+        expression: IF 'product' IS 'hoodie' THEN 'color' IN ['white', 'black']
+      - constraint: Norway phone number
+        expression: IF 'country' IS 'Norway' THEN 'phone' IS 'Norway'
+      - constraint: Poland phone number
+        expression: IF 'country' IS 'Poland' THEN 'phone' IS 'Poland'
+      - constraint: cash not possible in other countries
+        expression: IF 'country' IS 'other' THEN 'payment' IS NOT 'cash on delivery' AND
+          'delivery' IS NOT 'express'
+      - constraint: POST NL
+        expression: IF 'country' IS NOT 'Benelux' THEN 'delivery' IS NOT 'PostNL'
