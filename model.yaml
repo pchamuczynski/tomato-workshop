@@ -3,6 +3,7 @@ functions:
     parameters:
       - parameter: product
         choices:
+          - choice: t-shirt
           - choice: hoodie
       - parameter: color
         choices:

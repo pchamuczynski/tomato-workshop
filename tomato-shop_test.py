@@ -93,7 +93,7 @@ def main():
         header = csv_rows[0].split(",")
         mapping = {}
         for i, field in enumerate(header):
-            mapping[field] = i
+            mapping[field.lower()] = i
         # the rest of the rows are data
         for row in csv_rows[1:]:
             values = row.split(",")
